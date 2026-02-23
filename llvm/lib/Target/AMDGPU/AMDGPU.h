@@ -186,6 +186,9 @@ extern char &AMDGPUReserveAllocatedVGPRsLegacyID;
 void initializeAMDGPUReserveWWMRegsLegacyPass(PassRegistry &);
 extern char &AMDGPUReserveWWMRegsLegacyID;
 
+void initializeAMDGPUReEmitLiveDebugVariablesLegacyPass(PassRegistry &);
+extern char &AMDGPUReEmitLiveDebugVariablesLegacyID;
+
 void initializeAMDGPURewriteOutArgumentsPass(PassRegistry &);
 extern char &AMDGPURewriteOutArgumentsID;
 

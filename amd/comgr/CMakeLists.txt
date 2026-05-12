@@ -108,6 +108,7 @@ set(SOURCES
   src/comgr-hotswap-llvm.cpp
   src/comgr-hotswap-patch-f32-to-e5m3.cpp
   src/comgr-hotswap-patch-inplace.cpp
+  src/comgr-hotswap-patch-sethalt-fix.cpp
   src/comgr-hotswap-patch-vop3px2-src2.cpp
   src/comgr-hotswap-patch-wmma-hazard.cpp
   src/comgr-hotswap-patch-wmma-scale16.cpp

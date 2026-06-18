@@ -31,7 +31,7 @@ on:
       release_type:
         description: 'Release type: "" for CI, or "dev", "nightly", "prerelease".'
         type: string
-        default: ""
+        default: ci 
       test_retry_count:
         type: number
         default: 2                  #It will perform one additional try if failed
@@ -62,7 +62,7 @@ on:
         default: false
       release_type:
         type: string
-        default: ""
+        default: ci
       test_retry_count:
         type: number
         default: 2

@@ -52,7 +52,7 @@ on:
       release_type:
         description: 'Release type: "" for CI, or "dev", "nightly", "prerelease". Controls artifact bucket and IAM role.'
         type: string
-        default: ""
+        default: ci
       test_type:
         type: string
 

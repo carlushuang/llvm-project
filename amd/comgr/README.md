@@ -227,6 +227,11 @@ include:
   appended to all clang driver invocations. This can be used to inject
   additional compiler flags for debugging or experimentation without modifying
   the application code.
+* `AMD_COMGR_USE_EMBEDDED_LIBCXX`: Controls Comgr's embedded libc++ header
+  fallback for HIP. If set to `force` or `1`, Comgr always adds the embedded
+  libc++ include path. If set to `disable` or `0`, Comgr never adds it. Any
+  other value, or leaving it unset, uses the default `auto` mode: Comgr skips
+  the embedded path when system C++ headers are found.
 
 ### VFS
 Comgr implements support for an in-memory, virtual filesystem (VFS) for storing

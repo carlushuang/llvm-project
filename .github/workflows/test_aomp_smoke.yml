@@ -105,7 +105,7 @@ jobs:
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           repository: "ROCm/TheRock"
-          ref: 'users/kzhuravl/merge-main-into-compiler-amd-staging-06-18-2026'
+          ref: 'users/kzhuravl/merge-main-into-compiler-amd-staging-06-17-2026-2'
           fetch-depth: 1
 
       - name: Pre-job cleanup Docker containers on Linux

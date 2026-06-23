@@ -50,7 +50,7 @@ define amdgpu_ps float @global_atomic_fadd_f32_saddr_rtn_atomicrmw(ptr addrspace
   ; GFX90A-NEXT:   [[V_CNDMASK_B32_e64_:%[0-9]+]]:vgpr_32 = V_CNDMASK_B32_e64 0, 0, 0, 1, killed [[SI_PS_LIVE]], implicit $exec
   ; GFX90A-NEXT:   [[S_MOV_B32_:%[0-9]+]]:sreg_32 = S_MOV_B32 1
   ; GFX90A-NEXT:   [[V_CMP_NE_U32_e64_:%[0-9]+]]:sreg_64 = V_CMP_NE_U32_e64 killed [[V_CNDMASK_B32_e64_]], killed [[S_MOV_B32_]], implicit $exec
-  ; GFX90A-NEXT:   SI_BRCOND %bb.4, killed [[V_CMP_NE_U32_e64_]]
+  ; GFX90A-NEXT:   SI_BRCOND %bb.4, killed [[V_CMP_NE_U32_e64_]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX90A-NEXT:   S_BRANCH %bb.1
   ; GFX90A-NEXT: {{  $}}
   ; GFX90A-NEXT: bb.1 (%ir-block.2):
@@ -87,7 +87,7 @@ define amdgpu_ps float @global_atomic_fadd_f32_saddr_rtn_atomicrmw(ptr addrspace
   ; GFX90A-NEXT:   [[V_CMP_NE_U32_e64_1:%[0-9]+]]:sreg_64 = V_CMP_NE_U32_e64 [[V_MBCNT_HI_U32_B32_e64_]], [[S_MOV_B32_1]], implicit $exec
   ; GFX90A-NEXT:   [[DEF2:%[0-9]+]]:av_32 = IMPLICIT_DEF
   ; GFX90A-NEXT:   [[COPY9:%[0-9]+]]:vreg_1 = COPY [[V_CMP_EQ_U32_e64_]]
-  ; GFX90A-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_1]]
+  ; GFX90A-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_1]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX90A-NEXT:   S_BRANCH %bb.2
   ; GFX90A-NEXT: {{  $}}
   ; GFX90A-NEXT: bb.2 (%ir-block.26):
@@ -130,7 +130,7 @@ define amdgpu_ps float @global_atomic_fadd_f32_saddr_rtn_atomicrmw(ptr addrspace
   ; GFX942-NEXT:   [[V_CNDMASK_B32_e64_:%[0-9]+]]:vgpr_32 = V_CNDMASK_B32_e64 0, 0, 0, 1, killed [[SI_PS_LIVE]], implicit $exec
   ; GFX942-NEXT:   [[S_MOV_B32_:%[0-9]+]]:sreg_32 = S_MOV_B32 1
   ; GFX942-NEXT:   [[V_CMP_NE_U32_e64_:%[0-9]+]]:sreg_64 = V_CMP_NE_U32_e64 killed [[V_CNDMASK_B32_e64_]], killed [[S_MOV_B32_]], implicit $exec
-  ; GFX942-NEXT:   SI_BRCOND %bb.4, killed [[V_CMP_NE_U32_e64_]]
+  ; GFX942-NEXT:   SI_BRCOND %bb.4, killed [[V_CMP_NE_U32_e64_]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX942-NEXT:   S_BRANCH %bb.1
   ; GFX942-NEXT: {{  $}}
   ; GFX942-NEXT: bb.1 (%ir-block.2):
@@ -167,7 +167,7 @@ define amdgpu_ps float @global_atomic_fadd_f32_saddr_rtn_atomicrmw(ptr addrspace
   ; GFX942-NEXT:   [[V_CMP_NE_U32_e64_1:%[0-9]+]]:sreg_64 = V_CMP_NE_U32_e64 [[V_MBCNT_HI_U32_B32_e64_]], [[S_MOV_B32_1]], implicit $exec
   ; GFX942-NEXT:   [[DEF2:%[0-9]+]]:av_32 = IMPLICIT_DEF
   ; GFX942-NEXT:   [[COPY9:%[0-9]+]]:vreg_1 = COPY [[V_CMP_EQ_U32_e64_]]
-  ; GFX942-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_1]]
+  ; GFX942-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_1]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX942-NEXT:   S_BRANCH %bb.2
   ; GFX942-NEXT: {{  $}}
   ; GFX942-NEXT: bb.2 (%ir-block.26):
@@ -210,7 +210,7 @@ define amdgpu_ps float @global_atomic_fadd_f32_saddr_rtn_atomicrmw(ptr addrspace
   ; GFX11-NEXT:   [[V_CNDMASK_B32_e64_:%[0-9]+]]:vgpr_32 = V_CNDMASK_B32_e64 0, 0, 0, 1, killed [[SI_PS_LIVE]], implicit $exec
   ; GFX11-NEXT:   [[S_MOV_B32_:%[0-9]+]]:sreg_32 = S_MOV_B32 1
   ; GFX11-NEXT:   [[V_CMP_NE_U32_e64_:%[0-9]+]]:sreg_32 = V_CMP_NE_U32_e64 killed [[V_CNDMASK_B32_e64_]], killed [[S_MOV_B32_]], implicit $exec
-  ; GFX11-NEXT:   SI_BRCOND %bb.4, killed [[V_CMP_NE_U32_e64_]]
+  ; GFX11-NEXT:   SI_BRCOND %bb.4, killed [[V_CMP_NE_U32_e64_]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX11-NEXT:   S_BRANCH %bb.1
   ; GFX11-NEXT: {{  $}}
   ; GFX11-NEXT: bb.1 (%ir-block.2):
@@ -248,7 +248,7 @@ define amdgpu_ps float @global_atomic_fadd_f32_saddr_rtn_atomicrmw(ptr addrspace
   ; GFX11-NEXT:   [[V_CMP_NE_U32_e64_1:%[0-9]+]]:sreg_32 = V_CMP_NE_U32_e64 [[V_MBCNT_LO_U32_B32_e64_]], [[S_MOV_B32_1]], implicit $exec
   ; GFX11-NEXT:   [[DEF3:%[0-9]+]]:vgpr_32 = IMPLICIT_DEF
   ; GFX11-NEXT:   [[COPY6:%[0-9]+]]:vreg_1 = COPY [[V_CMP_EQ_U32_e64_]]
-  ; GFX11-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_1]]
+  ; GFX11-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_1]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX11-NEXT:   S_BRANCH %bb.2
   ; GFX11-NEXT: {{  $}}
   ; GFX11-NEXT: bb.2 (%ir-block.23):

@@ -14,7 +14,7 @@ define i32 @divergent_lshr_and_cmp(i32 %x) {
   ; GCN-NEXT:   [[V_CMP_NE_U32_e64_:%[0-9]+]]:sreg_64 = V_CMP_NE_U32_e64 killed [[V_AND_B32_e64_]], killed [[S_MOV_B32_1]], implicit $exec
   ; GCN-NEXT:   [[S_MOV_B64_:%[0-9]+]]:sreg_64 = S_MOV_B64 -1
   ; GCN-NEXT:   [[S_XOR_B64_:%[0-9]+]]:sreg_64 = S_XOR_B64 killed [[V_CMP_NE_U32_e64_]], killed [[S_MOV_B64_]], implicit-def dead $scc
-  ; GCN-NEXT:   SI_BRCOND %bb.2, killed [[S_XOR_B64_]]
+  ; GCN-NEXT:   SI_BRCOND %bb.2, killed [[S_XOR_B64_]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GCN-NEXT:   S_BRANCH %bb.1
   ; GCN-NEXT: {{  $}}
   ; GCN-NEXT: bb.1.out.true:

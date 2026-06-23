@@ -39,7 +39,7 @@ define amdgpu_kernel void @loop_mix_i1(ptr addrspace(1) %filter.coerce, ptr addr
   ; GFX90A-NEXT:   [[COPY5:%[0-9]+]]:vgpr_32 = COPY [[V_AND_B32_e64_]]
   ; GFX90A-NEXT:   [[S_MOV_B32_1:%[0-9]+]]:sreg_32 = S_MOV_B32 6
   ; GFX90A-NEXT:   [[V_CMP_LT_U32_e64_:%[0-9]+]]:sreg_64 = V_CMP_LT_U32_e64 [[V_AND_B32_e64_]], killed [[S_MOV_B32_1]], implicit $exec
-  ; GFX90A-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_LT_U32_e64_]]
+  ; GFX90A-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_LT_U32_e64_]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX90A-NEXT:   S_BRANCH %bb.1
   ; GFX90A-NEXT: {{  $}}
   ; GFX90A-NEXT: bb.1.do.body.preheader:
@@ -89,7 +89,7 @@ define amdgpu_kernel void @loop_mix_i1(ptr addrspace(1) %filter.coerce, ptr addr
   ; GFX90A-NEXT:   [[V_CNDMASK_B32_e64_2:%[0-9]+]]:vgpr_32 = V_CNDMASK_B32_e64 0, 0, 0, 1, [[V_CMP_NE_U32_e64_]], implicit $exec
   ; GFX90A-NEXT:   [[S_MOV_B32_5:%[0-9]+]]:sreg_32 = S_MOV_B32 1
   ; GFX90A-NEXT:   [[V_CMP_NE_U32_e64_1:%[0-9]+]]:sreg_64 = V_CMP_NE_U32_e64 killed [[V_CNDMASK_B32_e64_2]], killed [[S_MOV_B32_5]], implicit $exec
-  ; GFX90A-NEXT:   SI_BRCOND %bb.6, killed [[V_CMP_NE_U32_e64_1]]
+  ; GFX90A-NEXT:   SI_BRCOND %bb.6, killed [[V_CMP_NE_U32_e64_1]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX90A-NEXT:   S_BRANCH %bb.5
   ; GFX90A-NEXT: {{  $}}
   ; GFX90A-NEXT: bb.5.if.then11:
@@ -117,7 +117,7 @@ define amdgpu_kernel void @loop_mix_i1(ptr addrspace(1) %filter.coerce, ptr addr
   ; GFX1200-NEXT:   [[COPY2:%[0-9]+]]:sreg_64_xexec_xnull = COPY [[REG_SEQUENCE]]
   ; GFX1200-NEXT:   [[V_AND_B32_e64_:%[0-9]+]]:vgpr_32 = V_AND_B32_e64 1023, killed [[COPY1]](s32), implicit $exec
   ; GFX1200-NEXT:   [[V_CMP_GT_U32_e64_:%[0-9]+]]:sreg_32 = V_CMP_GT_U32_e64 6, [[V_AND_B32_e64_]], implicit $exec
-  ; GFX1200-NEXT:   SI_BRCOND %bb.4, killed [[V_CMP_GT_U32_e64_]]
+  ; GFX1200-NEXT:   SI_BRCOND %bb.4, killed [[V_CMP_GT_U32_e64_]], implicit-def dead $exec, implicit-def dead $vcc_lo, implicit $exec
   ; GFX1200-NEXT:   S_BRANCH %bb.1
   ; GFX1200-NEXT: {{  $}}
   ; GFX1200-NEXT: bb.1.do.body.preheader:
@@ -165,7 +165,7 @@ define amdgpu_kernel void @loop_mix_i1(ptr addrspace(1) %filter.coerce, ptr addr
   ; GFX1200-NEXT:   [[V_CMP_NE_U32_e64_:%[0-9]+]]:sreg_32_xm0_xexec = V_CMP_NE_U32_e64 0, killed [[COPY8]], implicit $exec
   ; GFX1200-NEXT:   [[V_CNDMASK_B32_e64_2:%[0-9]+]]:vgpr_32 = V_CNDMASK_B32_e64 0, 0, 0, 1, killed [[V_CMP_NE_U32_e64_]], implicit $exec
   ; GFX1200-NEXT:   [[V_CMP_NE_U32_e64_1:%[0-9]+]]:sreg_32 = V_CMP_NE_U32_e64 1, killed [[V_CNDMASK_B32_e64_2]], implicit $exec
-  ; GFX1200-NEXT:   SI_BRCOND %bb.7, killed [[V_CMP_NE_U32_e64_1]]
+  ; GFX1200-NEXT:   SI_BRCOND %bb.7, killed [[V_CMP_NE_U32_e64_1]], implicit-def dead $exec, implicit-def dead $vcc_lo, implicit $exec
   ; GFX1200-NEXT:   S_BRANCH %bb.6
   ; GFX1200-NEXT: {{  $}}
   ; GFX1200-NEXT: bb.6.if.then11:

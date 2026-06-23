@@ -48,7 +48,7 @@ define amdgpu_ps void @global_atomic_fadd_f32_saddr_no_rtn_atomicrmw(ptr addrspa
   ; GFX908-NEXT:   [[V_CNDMASK_B32_e64_:%[0-9]+]]:vgpr_32 = V_CNDMASK_B32_e64 0, 0, 0, 1, killed [[SI_PS_LIVE]], implicit $exec
   ; GFX908-NEXT:   [[S_MOV_B32_:%[0-9]+]]:sreg_32 = S_MOV_B32 1
   ; GFX908-NEXT:   [[V_CMP_NE_U32_e64_:%[0-9]+]]:sreg_64 = V_CMP_NE_U32_e64 killed [[V_CNDMASK_B32_e64_]], killed [[S_MOV_B32_]], implicit $exec
-  ; GFX908-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_]]
+  ; GFX908-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX908-NEXT:   S_BRANCH %bb.1
   ; GFX908-NEXT: {{  $}}
   ; GFX908-NEXT: bb.1 (%ir-block.2):
@@ -80,7 +80,7 @@ define amdgpu_ps void @global_atomic_fadd_f32_saddr_no_rtn_atomicrmw(ptr addrspa
   ; GFX908-NEXT:   [[V_READLANE_B32_:%[0-9]+]]:sreg_32_xm0 = V_READLANE_B32 killed [[V_ADD_F32_e64_5]], killed [[S_MOV_B32_2]]
   ; GFX908-NEXT:   early-clobber %0:sgpr_32 = STRICT_WWM killed [[V_READLANE_B32_]], implicit $exec
   ; GFX908-NEXT:   [[V_CMP_NE_U32_e64_1:%[0-9]+]]:sreg_64 = V_CMP_NE_U32_e64 killed [[V_MBCNT_HI_U32_B32_e64_]], [[S_MOV_B32_1]], implicit $exec
-  ; GFX908-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_1]]
+  ; GFX908-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_1]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX908-NEXT:   S_BRANCH %bb.2
   ; GFX908-NEXT: {{  $}}
   ; GFX908-NEXT: bb.2 (%ir-block.25):
@@ -107,7 +107,7 @@ define amdgpu_ps void @global_atomic_fadd_f32_saddr_no_rtn_atomicrmw(ptr addrspa
   ; GFX90A_GFX942-NEXT:   [[V_CNDMASK_B32_e64_:%[0-9]+]]:vgpr_32 = V_CNDMASK_B32_e64 0, 0, 0, 1, killed [[SI_PS_LIVE]], implicit $exec
   ; GFX90A_GFX942-NEXT:   [[S_MOV_B32_:%[0-9]+]]:sreg_32 = S_MOV_B32 1
   ; GFX90A_GFX942-NEXT:   [[V_CMP_NE_U32_e64_:%[0-9]+]]:sreg_64 = V_CMP_NE_U32_e64 killed [[V_CNDMASK_B32_e64_]], killed [[S_MOV_B32_]], implicit $exec
-  ; GFX90A_GFX942-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_]]
+  ; GFX90A_GFX942-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX90A_GFX942-NEXT:   S_BRANCH %bb.1
   ; GFX90A_GFX942-NEXT: {{  $}}
   ; GFX90A_GFX942-NEXT: bb.1 (%ir-block.2):
@@ -139,7 +139,7 @@ define amdgpu_ps void @global_atomic_fadd_f32_saddr_no_rtn_atomicrmw(ptr addrspa
   ; GFX90A_GFX942-NEXT:   [[V_READLANE_B32_:%[0-9]+]]:sreg_32_xm0 = V_READLANE_B32 killed [[V_ADD_F32_e64_5]], killed [[S_MOV_B32_2]]
   ; GFX90A_GFX942-NEXT:   early-clobber %0:sgpr_32 = STRICT_WWM killed [[V_READLANE_B32_]], implicit $exec
   ; GFX90A_GFX942-NEXT:   [[V_CMP_NE_U32_e64_1:%[0-9]+]]:sreg_64 = V_CMP_NE_U32_e64 killed [[V_MBCNT_HI_U32_B32_e64_]], [[S_MOV_B32_1]], implicit $exec
-  ; GFX90A_GFX942-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_1]]
+  ; GFX90A_GFX942-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_1]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX90A_GFX942-NEXT:   S_BRANCH %bb.2
   ; GFX90A_GFX942-NEXT: {{  $}}
   ; GFX90A_GFX942-NEXT: bb.2 (%ir-block.25):
@@ -166,7 +166,7 @@ define amdgpu_ps void @global_atomic_fadd_f32_saddr_no_rtn_atomicrmw(ptr addrspa
   ; GFX11_GFX12-NEXT:   [[V_CNDMASK_B32_e64_:%[0-9]+]]:vgpr_32 = V_CNDMASK_B32_e64 0, 0, 0, 1, killed [[SI_PS_LIVE]], implicit $exec
   ; GFX11_GFX12-NEXT:   [[S_MOV_B32_:%[0-9]+]]:sreg_32 = S_MOV_B32 1
   ; GFX11_GFX12-NEXT:   [[V_CMP_NE_U32_e64_:%[0-9]+]]:sreg_32 = V_CMP_NE_U32_e64 killed [[V_CNDMASK_B32_e64_]], killed [[S_MOV_B32_]], implicit $exec
-  ; GFX11_GFX12-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_]]
+  ; GFX11_GFX12-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX11_GFX12-NEXT:   S_BRANCH %bb.1
   ; GFX11_GFX12-NEXT: {{  $}}
   ; GFX11_GFX12-NEXT: bb.1 (%ir-block.2):
@@ -192,7 +192,7 @@ define amdgpu_ps void @global_atomic_fadd_f32_saddr_no_rtn_atomicrmw(ptr addrspa
   ; GFX11_GFX12-NEXT:   [[V_ADD_F32_e64_4:%[0-9]+]]:vgpr_32 = nofpexcept V_ADD_F32_e64 0, [[V_ADD_F32_e64_3]], 0, killed [[V_PERMLANEX16_B32_e64_]], 0, 0, implicit $mode, implicit $exec
   ; GFX11_GFX12-NEXT:   early-clobber %0:vgpr_32 = STRICT_WWM killed [[V_ADD_F32_e64_4]], implicit $exec
   ; GFX11_GFX12-NEXT:   [[V_CMP_NE_U32_e64_1:%[0-9]+]]:sreg_32 = V_CMP_NE_U32_e64 killed [[V_MBCNT_LO_U32_B32_e64_]], [[S_MOV_B32_1]], implicit $exec
-  ; GFX11_GFX12-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_1]]
+  ; GFX11_GFX12-NEXT:   SI_BRCOND %bb.3, killed [[V_CMP_NE_U32_e64_1]], implicit-def dead $exec, implicit-def dead $vcc, implicit $exec
   ; GFX11_GFX12-NEXT:   S_BRANCH %bb.2
   ; GFX11_GFX12-NEXT: {{  $}}
   ; GFX11_GFX12-NEXT: bb.2 (%ir-block.18):

@@ -1800,10 +1800,9 @@ define amdgpu_kernel void @global_atomic_fadd_f64_noret_pat_agent_safe(ptr addrs
 ; GFX90A-NEXT:    v_cmp_eq_u64_e32 vcc, v[0:1], v[2:3]
 ; GFX90A-NEXT:    v_cndmask_b32_e64 v2, 0, 1, vcc
 ; GFX90A-NEXT:    v_cmp_ne_u32_e32 vcc, 1, v2
-; GFX90A-NEXT:    s_xor_b64 s[4:5], exec, vcc
 ; GFX90A-NEXT:    v_pk_mov_b32 v[2:3], v[0:1], v[0:1] op_sel:[0,1]
+; GFX90A-NEXT:    s_and_saveexec_b64 s[4:5], vcc
 ; GFX90A-NEXT:    s_or_b64 s[2:3], s[2:3], s[4:5]
-; GFX90A-NEXT:    s_mov_b64 exec, vcc
 ; GFX90A-NEXT:    ; divergent control-flow edge
 ; GFX90A-NEXT:    s_cbranch_execnz .LBB43_1
 ; GFX90A-NEXT:  .LBB43_2: ; %atomicrmw.end
@@ -2128,10 +2127,9 @@ define amdgpu_kernel void @flat_atomic_fadd_f64_noret_pat_agent_safe(ptr %ptr) {
 ; GFX90A-NEXT:    v_cmp_eq_u64_e32 vcc, v[0:1], v[2:3]
 ; GFX90A-NEXT:    v_cndmask_b32_e64 v2, 0, 1, vcc
 ; GFX90A-NEXT:    v_cmp_ne_u32_e32 vcc, 1, v2
-; GFX90A-NEXT:    s_xor_b64 s[2:3], exec, vcc
 ; GFX90A-NEXT:    v_pk_mov_b32 v[2:3], v[0:1], v[0:1] op_sel:[0,1]
+; GFX90A-NEXT:    s_and_saveexec_b64 s[2:3], vcc
 ; GFX90A-NEXT:    s_or_b64 s[0:1], s[0:1], s[2:3]
-; GFX90A-NEXT:    s_mov_b64 exec, vcc
 ; GFX90A-NEXT:    ; divergent control-flow edge
 ; GFX90A-NEXT:    s_cbranch_execnz .LBB50_1
 ; GFX90A-NEXT:  .LBB50_2: ; %atomicrmw.end

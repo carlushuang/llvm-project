@@ -568,6 +568,12 @@ AArch64TTIImpl::getPopcntSupport(unsigned TyWidth) const {
   return TTI::PSK_Software;
 }
 
+InstructionCost AArch64TTIImpl::getBranchMispredictPenalty() const {
+  // MispredictPenalty is defined per-CPU in AArch64Sched*.td (e.g.,
+  // AArch64SchedNeoverseV2.td).
+  return ST->getSchedModel().MispredictPenalty;
+}
+
 static bool isUnpackedVectorVT(EVT VecVT) {
   return VecVT.isScalableVector() &&
          VecVT.getSizeInBits().getKnownMinValue() < AArch64::SVEBitsPerBlock;
@@ -2498,7 +2504,7 @@ instCombineSVEVectorFuseMulAddSub(InstCombiner &IC, IntrinsicInst &II,
     FMFSource = &II;
   }
 
-  CallInst *Res;
+  Value *Res;
   if (MergeIntoAddendOp)
     Res = IC.Builder.CreateIntrinsic(FuseOpc, {II.getType()},
                                      {P, AddendOp, MulOp0, MulOp1}, FMFSource);

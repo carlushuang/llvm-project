@@ -101,7 +101,6 @@ set(SOURCES
   src/comgr-diagnostic-handler.cpp
   src/comgr-disassembly.cpp
   src/comgr-env.cpp
-  src/comgr-logger.cpp
   src/comgr-hotswap.cpp
   src/comgr-hotswap-b0a0.cpp
   src/comgr-hotswap-patch-trampoline.cpp
@@ -114,6 +113,7 @@ set(SOURCES
   src/comgr-hotswap-patch-wmma-scale16.cpp
   src/comgr-hotswap-patch-wmma-split.cpp
   src/comgr-libcxx-headers.cpp
+  src/comgr-logger.cpp
   src/comgr-metadata.cpp
   src/comgr-signal.cpp
   src/comgr-spirv-command.cpp

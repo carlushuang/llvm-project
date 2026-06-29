@@ -9,7 +9,7 @@ void noEscapeFunc(__attribute__((noescape)) BlockTy);
 
 // Verify that the desired DIExpression are generated for escaping (i.e, not
 // 'noescape') blocks.
-// CHECK-LABEL: define dso_local void @test_escape_func(
+// CHECK-LABEL: define void @test_escape_func(
 // CHECK-SAME: ) #[[ATTR0:[0-9]+]] !dbg [[DBG4:![0-9]+]] {
 // CHECK-NEXT:  [[ENTRY:.*:]]
 // CHECK-NEXT:    [[ESCAPE_VAR:%.*]] = alloca [[STRUCT___BLOCK_BYREF_ESCAPE_VAR:%.*]], align 8
@@ -40,7 +40,7 @@ void noEscapeFunc(__attribute__((noescape)) BlockTy);
 // CHECK-NEXT:    call void @_Block_object_dispose(ptr [[ESCAPE_VAR]], i32 8) #[[ATTR3:[0-9]+]], !dbg [[DBG14:![0-9]+]]
 // CHECK-NEXT:    ret void, !dbg [[DBG14]]
 //
-// DEADCODE-LABEL: define dso_local void @test_escape_func(
+// DEADCODE-LABEL: define void @test_escape_func(
 // DEADCODE-SAME: ) #[[ATTR0:[0-9]+]] !dbg [[DBG4:![0-9]+]] {
 // DEADCODE-NEXT:  [[ENTRY:.*:]]
 // DEADCODE-NEXT:    [[ESCAPE_VAR:%.*]] = alloca [[STRUCT___BLOCK_BYREF_ESCAPE_VAR:%.*]], align 8
@@ -67,7 +67,7 @@ void test_escape_func() {
 }
 
 // Verify that the desired DIExpression are generated for noescape blocks.
-// CHECK-LABEL: define dso_local void @test_noescape_func(
+// CHECK-LABEL: define void @test_noescape_func(
 // CHECK-SAME: ) #[[ATTR0]] !dbg [[DBG33:![0-9]+]] {
 // CHECK-NEXT:  [[ENTRY:.*:]]
 // CHECK-NEXT:    [[NOESCAPE_VAR:%.*]] = alloca i32, align 4
@@ -88,7 +88,7 @@ void test_escape_func() {
 // CHECK-NEXT:    call void @noEscapeFunc(ptr noundef captures(address) [[BLOCK]]), !dbg [[DBG38:![0-9]+]]
 // CHECK-NEXT:    ret void, !dbg [[DBG39:![0-9]+]]
 //
-// DEADCODE-LABEL: define dso_local void @test_noescape_func(
+// DEADCODE-LABEL: define void @test_noescape_func(
 // DEADCODE-SAME: ) #[[ATTR0]] !dbg [[DBG13:![0-9]+]] {
 // DEADCODE-NEXT:  [[ENTRY:.*:]]
 // DEADCODE-NEXT:    [[NOESCAPE_VAR:%.*]] = alloca i32, align 4
@@ -115,7 +115,7 @@ void test_noescape_func() {
 }
 
 // Verify that the desired DIExpression are generated for blocks.
-// CHECK-LABEL: define dso_local void @test_local_block(
+// CHECK-LABEL: define void @test_local_block(
 // CHECK-SAME: ) #[[ATTR0]] !dbg [[DBG45:![0-9]+]] {
 // CHECK-NEXT:  [[ENTRY:.*:]]
 // CHECK-NEXT:    [[BLOCK_VAR:%.*]] = alloca [[STRUCT___BLOCK_BYREF_BLOCK_VAR:%.*]], align 8
@@ -148,7 +148,7 @@ void test_noescape_func() {
 // CHECK-NEXT:    call void @_Block_object_dispose(ptr [[BLOCK_VAR]], i32 8) #[[ATTR3]], !dbg [[DBG50:![0-9]+]]
 // CHECK-NEXT:    ret void, !dbg [[DBG50]]
 //
-// DEADCODE-LABEL: define dso_local void @test_local_block(
+// DEADCODE-LABEL: define void @test_local_block(
 // DEADCODE-SAME: ) #[[ATTR0]] !dbg [[DBG29:![0-9]+]] {
 // DEADCODE-NEXT:  [[ENTRY:.*:]]
 // DEADCODE-NEXT:    [[BLOCK_VAR:%.*]] = alloca [[STRUCT___BLOCK_BYREF_BLOCK_VAR:%.*]], align 8
@@ -190,7 +190,7 @@ void test_local_block() {
 
 // Verify that the desired DIExpression are generated for __block vars not used
 // in any block.
-// CHECK-LABEL: define dso_local void @test_unused(
+// CHECK-LABEL: define void @test_unused(
 // CHECK-SAME: ) #[[ATTR0]] !dbg [[DBG56:![0-9]+]] {
 // CHECK-NEXT:  [[ENTRY:.*:]]
 // CHECK-NEXT:    [[UNUSED_VAR:%.*]] = alloca i32, align 4
@@ -200,7 +200,7 @@ void test_local_block() {
 // CHECK-NEXT:    store i32 [[INC]], ptr [[UNUSED_VAR]], align 4, !dbg [[DBG60]]
 // CHECK-NEXT:    ret void, !dbg [[DBG61:![0-9]+]]
 //
-// DEADCODE-LABEL: define dso_local void @test_unused(
+// DEADCODE-LABEL: define void @test_unused(
 // DEADCODE-SAME: ) #[[ATTR0]] !dbg [[DBG50:![0-9]+]] {
 // DEADCODE-NEXT:  [[ENTRY:.*:]]
 // DEADCODE-NEXT:    [[UNUSED_VAR:%.*]] = alloca i32, align 4
@@ -218,7 +218,7 @@ void test_unused() {
 
 
 //.
-// CHECK: [[META0:![0-9]+]] = distinct !DICompileUnit(language: DW_LANG_C11, file: [[META1:![0-9]+]], producer: "{{.*}}clang version {{.*}}", isOptimized: false, runtimeVersion: 0, emissionKind: FullDebug, splitDebugInlining: false, nameTableKind: None)
+// CHECK: [[META0:![0-9]+]] = distinct !DICompileUnit(language: DW_LANG_C11, file: [[META1:![0-9]+]], producer: "{{.*}}clang version {{.*}}", isOptimized: false, runtimeVersion: 0, emissionKind: FullDebug, splitDebugInlining: false, nameTableKind: Apple)
 // CHECK: [[META1]] = !DIFile(filename: "{{.*}}<stdin>", directory: {{.*}})
 // CHECK: [[DBG4]] = distinct !DISubprogram(name: "test_escape_func", scope: [[META5:![0-9]+]], file: [[META5]], line: 60, type: [[META6:![0-9]+]], scopeLine: 60, spFlags: DISPFlagDefinition, unit: [[META0]], retainedNodes: [[META8:![0-9]+]])
 // CHECK: [[META5]] = !DIFile(filename: "{{.*}}debug-info-block-expr-heterogeneous-dwarf.c", directory: {{.*}})
@@ -251,7 +251,7 @@ void test_unused() {
 // CHECK: [[DBG60]] = !DILocation(line: 216, column: 3, scope: [[DBG56]])
 // CHECK: [[DBG61]] = !DILocation(line: 217, column: 1, scope: [[DBG56]])
 //.
-// DEADCODE: [[META0:![0-9]+]] = distinct !DICompileUnit(language: DW_LANG_C11, file: [[META1:![0-9]+]], producer: "{{.*}}clang version {{.*}}", isOptimized: false, runtimeVersion: 0, emissionKind: FullDebug, splitDebugInlining: false, nameTableKind: None)
+// DEADCODE: [[META0:![0-9]+]] = distinct !DICompileUnit(language: DW_LANG_C11, file: [[META1:![0-9]+]], producer: "{{.*}}clang version {{.*}}", isOptimized: false, runtimeVersion: 0, emissionKind: FullDebug, splitDebugInlining: false, nameTableKind: Apple)
 // DEADCODE: [[META1]] = !DIFile(filename: "{{.*}}<stdin>", directory: {{.*}})
 // DEADCODE: [[DBG4]] = distinct !DISubprogram(name: "test_escape_func", scope: [[META5:![0-9]+]], file: [[META5]], line: 60, type: [[META6:![0-9]+]], scopeLine: 60, spFlags: DISPFlagDefinition, unit: [[META0]], retainedNodes: [[META8:![0-9]+]])
 // DEADCODE: [[META5]] = !DIFile(filename: "{{.*}}debug-info-block-expr-heterogeneous-dwarf.c", directory: {{.*}})

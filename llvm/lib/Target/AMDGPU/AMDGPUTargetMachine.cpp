@@ -535,6 +535,7 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeAMDGPUTarget() {
   initializeSIMemoryLegalizerPass(*PR);
   initializeSIOptimizeExecMaskingLegacyPass(*PR);
   initializeSIPreAllocateWWMRegsLegacyPass(*PR);
+  initializeSIPreColorPinsPass(*PR);
   initializeSIFormMemoryClausesPass(*PR);
   initializeSIPostRABundlerPass(*PR);
   initializeGCNCreateVOPDPass(*PR);
@@ -1542,6 +1543,10 @@ bool GCNPassConfig::addGlobalInstructionSelect() {
 }
 
 void GCNPassConfig::addFastRegAlloc() {
+  // Hard-pin llvm.amdgcn.pin.* values while still in SSA form, before
+  // PHIElimination / TwoAddressInstruction.
+  addPass(createSIPreColorPinsPass());
+
   // FIXME: We have to disable the verifier here because of PHIElimination +
   // TwoAddressInstructions disabling it.
 
@@ -1556,6 +1561,10 @@ void GCNPassConfig::addFastRegAlloc() {
 }
 
 void GCNPassConfig::addOptimizedRegAlloc() {
+  // Hard-pin llvm.amdgcn.pin.* values while still in SSA form, before
+  // PHIElimination / TwoAddressInstruction / LiveIntervals.
+  addPass(createSIPreColorPinsPass());
+
   if (EnableDCEInRA)
     insertPass(&DetectDeadLanesID, &DeadMachineInstructionElimID);
 

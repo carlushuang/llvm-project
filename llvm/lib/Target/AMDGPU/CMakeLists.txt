@@ -177,6 +177,7 @@ add_llvm_target(AMDGPUCodeGen
   SIPeepholeSDWA.cpp
   SIPostRABundler.cpp
   SIPreAllocateWWMRegs.cpp
+  SIPreColorPins.cpp
   SIPreEmitPeephole.cpp
   SIProgramInfo.cpp
   SIRegisterInfo.cpp

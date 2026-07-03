@@ -1146,6 +1146,10 @@ AMDGPU Support
   a late / deferred query for the current target processor
 - Introduced a new target specific builtin ``__builtin_amdgcn_is_invocable``,
   which enables fine-grained, per-builtin, feature availability
+- Added the ``amdgpu_pin_vgpr(N)`` and ``amdgpu_pin_agpr(N)`` variable attributes,
+  which request that an automatic local variable be placed in the physical
+  VGPR/AGPR tuple starting at register ``N``. This is a placement hint (backed by
+  the ``llvm.amdgcn.pin.{vgpr,agpr}`` intrinsics) for hand-tuned kernels.
 
 NVPTX Support
 ^^^^^^^^^^^^^^

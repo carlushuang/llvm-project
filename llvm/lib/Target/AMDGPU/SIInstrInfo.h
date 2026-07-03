@@ -1610,6 +1610,11 @@ namespace AMDGPU {
   LLVM_READONLY
   int getMFMASrcCVDstAGPROp(uint16_t Opcode);
 
+  /// \returns the VGPR (vgprcd) form of an MFMA that uses AGPRs for srcC/vdst,
+  /// or -1. Lets an accumulator be pinned into VGPRs with AGPR inputs.
+  LLVM_READONLY
+  int getMFMASrcCVDstVGPROp(uint16_t Opcode);
+
   /// \returns v_cmpx version of a v_cmp instruction.
   LLVM_READONLY
   int getVCMPXOpFromVCMP(uint16_t Opcode);

@@ -1258,6 +1258,12 @@ struct AAAMDGPUNoAGPR
         return false;
       }
 
+      // llvm.amdgcn.pin.agpr is an explicit request to keep a value in an AGPR,
+      // so it forces the function to use AGPRs (otherwise the MFMA accumulator
+      // would be lowered to the VGPR form and the pin could not be honored).
+      if (Callee->getIntrinsicID() == Intrinsic::amdgcn_pin_agpr)
+        return false;
+
       // Some intrinsics may use AGPRs, but if we have a choice, we are not
       // required to use AGPRs.
       if (Callee->isIntrinsic())
